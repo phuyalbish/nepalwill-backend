@@ -3,7 +3,7 @@ services:
     build:
       context: ./../frontend
       dockerfile: Dockerfile.dev
-    container_name: PROJECT_NAME-frontend
+    container_name: nepalwill-frontend
     ports:
       - "5173:5173"
     volumes:
@@ -12,16 +12,16 @@ services:
 
   db:
     image: mysql:latest
-    container_name: PROJECT_NAME-db
+    container_name: nepalwill-db
     volumes:
-      - PROJECT_NAME-data:/var/lin/mysql
+      - nepalwill-data:/var/lin/mysql
     ports:
       - 3307:3307
     environment:
       - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_DATABASE=PROJECT_NAMEDB
+      - MYSQL_DATABASE=nepalwillDB
     networks:
-      - PROJECT_NAMENetwork
+      - nepalwillNetwork
 
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "db"]
@@ -33,7 +33,7 @@ services:
     build:
       context: ./../backend
       dockerfile: Dockerfile
-    container_name: PROJECT_NAME-backend
+    container_name: nepalwill-backend
     command: >
       bash -c "python manage.py makemigrations &&
               python manage.py migrate && 
@@ -49,9 +49,9 @@ services:
       - ./../backend:/backend
       - /app/.venv
     networks:
-      - PROJECT_NAMENetwork
+      - nepalwillNetwork
 volumes:
-  PROJECT_NAME-data:
+  nepalwill-data:
 networks:
-  PROJECT_NAMENetwork:
+  nepalwillNetwork:
     driver: bridge

@@ -5,31 +5,31 @@ up:
 down:
 	docker-compose -f docker-compose.yaml down
 frontend: 
-	docker exec -it PROJECT_NAME-frontend bash
+	docker exec -it nepalwill-frontend bash
 
 backend: 
-	docker exec -it PROJECT_NAME-backend bash
+	docker exec -it nepalwill-backend bash
 
 db:
-	docker exec -it PROJECT_NAME-db bash
+	docker exec -it nepalwill-db bash
 
 superuser:
-	docker exec -it PROJECT_NAME-backend python manage.py createsuperuser
+	docker exec -it nepalwill-backend python manage.py createsuperuser
 
 makemigrations:
-	docker exec -it PROJECT_NAME-backend  python manage.py makemigrations
+	docker exec -it nepalwill-backend  python manage.py makemigrations
 
 showmigrations:
-	docker exec -it PROJECT_NAME-backend  python manage.py showmigrations
+	docker exec -it nepalwill-backend  python manage.py showmigrations
 
 makemigrationsmerge:
-	docker exec -it PROJECT_NAME-backend  python manage.py makemigrations --merge
+	docker exec -it nepalwill-backend  python manage.py makemigrations --merge
 
 migrate:
-	docker exec -it PROJECT_NAME-backend  python manage.py migrate
+	docker exec -it nepalwill-backend  python manage.py migrate
 
 loaddata:
-	docker exec -it PROJECT_NAME-backend python manage.py loaddata fixtures/$(f).json
+	docker exec -it nepalwill-backend python manage.py loaddata fixtures/$(f).json
 
 dumpdata: 
-	docker exec -it PROJECT_NAME-backend python manage.py dumpdata $(f) --output=fixtures/$(f).json
+	docker exec -it nepalwill-backend python manage.py dumpdata $(f) --output=fixtures/$(f).json
