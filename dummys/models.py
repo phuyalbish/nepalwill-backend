@@ -1,5 +1,7 @@
 from django.db import models
 
+from tinymce.models import HTMLField
+
 from core.mixins import HomeImageProcessingMixin
 from core.models import  BaseSlugModel
 from core.manager import AllManager, NonHiddenManager, HiddenManager
@@ -15,6 +17,8 @@ class Dummy(BaseSlugModel, HomeImageProcessingMixin):
         null=True, 
         blank=True,
     )
+
+    description = HTMLField()
     is_hidden = models.BooleanField(
         default=False, 
     )

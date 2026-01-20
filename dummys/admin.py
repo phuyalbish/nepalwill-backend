@@ -22,7 +22,7 @@ class DummyAdmin(DummyNameMixin, DeleteLinkMixin, admin.ModelAdmin):
 
     fieldsets = (
         ("Personal Information", {
-            "fields": ("name", "slug", "image",),
+            "fields": ("name", "slug", "image", "description",),
         }),
         ("Status", {
             "fields": ("is_hidden",),
