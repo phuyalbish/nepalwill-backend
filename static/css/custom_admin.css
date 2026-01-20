@@ -1,0 +1,264 @@
+.main-sidebar {
+    position: fixed !important;
+    height: 100vh !important;
+    overflow-y: auto !important;
+}
+.content-wrapper {
+    margin-left: 250px;
+}
+
+.login-logo>h1>picture>img {
+    height: 100px !important;
+    width: auto !important;
+    border-radius: 0 !important;
+    object-fit: contain;
+}
+
+.btn-primary {
+    background-color: #c4232a !important;
+    border:2px solid #c4232a !important;
+}
+
+.btn-primary:hover{
+    background-color: transparent !important;
+    border:2px solid #c4232a !important;
+    color:#c4232a !important;
+}
+
+
+
+/* Sidebar background */
+.main-sidebar {
+    background-color: #1f1f2e !important;
+}
+
+/* Sidebar text color */
+.main-sidebar .nav-sidebar .nav-link,
+.main-sidebar .brand-link {
+    color: #ffffff !important;
+}
+
+.main-sidebar .nav-sidebar .nav-link.active {
+    background-color: #3c3c5c !important;
+    color: #ffffff !important;
+}
+
+.main-sidebar .nav-sidebar .nav-link:hover {
+    background-color: #33334d !important;
+    color: #ffffff !important;
+}
+
+.main-footer {
+    display: none !important;
+}
+
+.brand-link img {
+    height: 35px !important;
+    width: auto !important;
+    border-radius: 0 !important;
+    object-fit: contain;
+}
+
+#content-main > form > .row,
+.card-body > .form-group > div,
+.card-body > .form-group > div > label,
+#content-main > form > .row > div {
+    position: relative;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.card-body{
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+    width: 100%;
+}
+.card-body > .form-group > div{
+    display: flex !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    flex-direction: column !important;
+}
+
+
+.card-body > .form-group > div > label {
+    display: flex !important; 
+    font-weight: 500 !important;
+    margin-left: 10px !important; 
+    flex-direction: row !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+
+
+
+.card-body > .form-group > div > div {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+
+
+.field-delete_link > .button{
+    background-color: red;
+    border:1px solid  red;
+    border-radius: 10px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+
+}
+
+
+.field-delete_link > .button:hover{
+    background-color: white;
+    color: red !important;
+    border-radius: 10px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    
+}
+
+
+#result_list > tbody > tr > th{
+    font-weight: 500;
+}
+
+
+#result_list > thead > tr > th > div > *{
+    font-weight: 600 !important;
+    color: #000 !important;
+}
+
+
+
+
+#jazzy-actions > div{
+        display: flex !important;
+        flex-wrap: wrap;
+        gap: 4px;
+        padding: 10px !important;
+}
+
+#jazzy-actions > .object-tools {
+    display: none !important;
+}
+
+#jazzy-actions > .object-tools > a {
+    display: none !important;
+}
+
+.sidebar > .user-panel {
+    display: none !important;
+}
+
+
+.select2-selection__choice__display{
+    color:#000!important;
+    margin: 4px !important;
+    width: fit-content;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice{
+
+    padding-left: 0 !important;
+}
+
+.select2-selection__rendered{
+    display: flex !important;
+    flex-wrap: wrap !important;
+}
+
+.select2-selection__choice__remove{
+        position: relative !important;
+        margin: 0 !important;
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+        padding-top: 6px !important;
+        padding-bottom: 6px !important;
+}
+
+
+.select2-search__field{
+    padding: 12px !important;
+}
+ .select2-selection__choice{
+    display: flex !important;
+    flex-direction: row;
+    align-items: center; 
+    color:#000 !important;
+    background: #CCEEE9 !important;
+    max-width: 80vw !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+}
+
+
+.select2-results__option{
+    max-width: 100%;
+}
+
+.card{
+    box-shadow: none !important;
+}
+
+.card-body{
+    padding: 1rem !important;
+    width: 100%;
+}
+
+/* .tab-content>.tab-pane {
+    overflow: hidden !important;
+} */
+@media (max-width: 700px) {
+  .content-wrapper > .content,
+  #content > .row > #content-main,
+  #content > .row,
+  .container-fluid {
+    padding: 0px !important;
+    margin: 0px !important;
+  }
+}
+
+@media (max-width: 700px){
+    .content > .container-fluid > .row > div > h1{
+        display:none;
+    }
+}
+
+.content-wrapper{
+    padding:4px
+}
+
+
+
+.related-widget-wrapper-link {
+    display: none !important;
+}
+
+
+
+.select2-results, .select2-dropdown, .select2-container{
+    max-width: 80vw !important;
+}
+
+
+
+@media (max-width: 700px){
+   
+    .select2-results, .select2-dropdown, .select2-container{
+        max-width: 90vw !important;
+    }
+
+}

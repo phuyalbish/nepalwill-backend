@@ -1,0 +1,74 @@
+name: Deploy Django to cPanel
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup SSH key
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+        chmod 600 ~/.ssh/id_ed25519
+
+
+        # Test SSH connection
+        ssh -o StrictHostKeyChecking=accept-new -i ~/.ssh/id_ed25519 ${{ secrets.SSH_USERNAME }}@${{ secrets.SERVER_IP }} exit
+
+
+
+    - name: Start ssh-agent and add key
+      uses: webfactory/ssh-agent@v0.7.0
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+
+# If i dont do webfactory/ssh-agent the i have to do:
+#  -e "ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=accept-new" \   in rsync command
+
+
+    - name: Deploy using rsync
+      run: |
+        rsync -avz --delete \
+          --exclude='.git/' \
+          --exclude='__pycache__/' \
+          --exclude='*.pyc' \
+          --exclude='*.pyo' \
+          --exclude='*.db' \
+          --exclude='*.sqlite3' \
+          --exclude='venv/' \
+          --exclude='.venv/' \
+          --exclude='.env' \
+          --exclude='.DS_Store' \
+          --exclude='node_modules/' \
+          --exclude='media/' \
+          --exclude='tmp/' \
+          --exclude='.htaccess' \
+          --exclude='stderr.log' \
+          --exclude='media.zip' \
+          --exclude='db_backup.json' \
+          --exclude='passenger_wsgi.py' \
+          --exclude='public/' \
+          ./ \
+          ${{ secrets.SSH_USERNAME }}@${{ secrets.SERVER_IP }}:/home/${{ secrets.SSH_USERNAME }}/htbackend/
+
+
+    - name: Post-deploy Django commands
+      run: |
+        ssh -o StrictHostKeyChecking=accept-new -i ~/.ssh/id_ed25519 ${{ secrets.SSH_USERNAME }}@${{ secrets.SERVER_IP }} << 'EOF'
+          source /home/${{ secrets.SSH_USERNAME }}/virtualenv/htbackend/3.10/bin/activate
+          cd /home/${{ secrets.SSH_USERNAME }}/htbackend
+          pip install -r requirements.txt
+          python manage.py migrate --noinput
+          python manage.py collectstatic --noinput
+          touch tmp/restart.txt
+        EOF
+
+
+        

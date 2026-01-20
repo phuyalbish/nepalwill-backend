@@ -1,0 +1,57 @@
+services:
+  frontend:
+    build:
+      context: ./../frontend
+      dockerfile: Dockerfile.dev
+    container_name: PROJECT_NAME-frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./../frontend:/frontend
+      - /frontend/node_modules
+
+  db:
+    image: mysql:latest
+    container_name: PROJECT_NAME-db
+    volumes:
+      - PROJECT_NAME-data:/var/lin/mysql
+    ports:
+      - 3307:3307
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=PROJECT_NAMEDB
+    networks:
+      - PROJECT_NAMENetwork
+
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "db"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  backend:
+    build:
+      context: ./../backend
+      dockerfile: Dockerfile
+    container_name: PROJECT_NAME-backend
+    command: >
+      bash -c "python manage.py makemigrations &&
+              python manage.py migrate && 
+              python manage.py create_default_superuser &&
+              python manage.py runserver 0.0.0.0:8080"
+
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./../backend:/backend
+      - /app/.venv
+    networks:
+      - PROJECT_NAMENetwork
+volumes:
+  PROJECT_NAME-data:
+networks:
+  PROJECT_NAMENetwork:
+    driver: bridge

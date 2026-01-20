@@ -1,0 +1,18 @@
+.venv
+__pycache__
+__pycache__/*
+media/*
+!media/default/*
+.DS_Store
+.env
+.env.production
+db_backup.json
+django_errors.log
+db.sqlite3
+staticfiles
+.python-version
+start.sh
+# migrations/*
+# */migrations/*
+# !*/migrations/__init__.py
+fixtures/*

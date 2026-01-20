@@ -1,0 +1,20 @@
+[FORMAT]
+max-line-length=150
+
+[TYPECHECK]
+max-parents=10
+
+[MESSAGES CONTROL]
+disable=too-many-ancestorscle
+
+[MASTER]
+ignore=
+    migrations,
+    .venv
+disable=
+    too-few-public-methods,
+    no-member,
+    missing-module-docstring,
+    missing-class-docstring,
+    missing-function-docstring,
+    W0718
